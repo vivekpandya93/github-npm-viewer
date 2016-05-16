@@ -1,86 +1,35 @@
 <section id="home">
-		<div class="container">
-			<div>
-    <!-- <h4>Default</h4>
-    <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
-    <uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
-    <uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></uib-pagination>
-    <uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></uib-pagination>
-    <pre>The selected page no: {{currentPage}}</pre>
-    <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
+		<div class = "container">
+			 <div ng-init = "initialize(bigCurrentPage)"></div>
 
-    <hr /> -->
-    <!-- <h4>Limit the maximum visible buttons</h4>
-    <h6><code>rotate</code> defaulted to <code>true</code>:</h6>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
-    <h6><code>rotate</code> defaulted to <code>true</code> and <code>force-ellipses</code> set to <code>true</code>:</h6>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></uib-pagination> -->
-    <h6><code>rotate</code> set to <code>false</code>:</h6>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></uib-pagination>
-    <div ng-init = "initialize(bigCurrentPage)"> 
-<!--     	<pre>{{data[0] | json}}</pre>
- -->    </div>
-    <div class="container">
-				
-				   	<ul>
-				   		<div ng-repeat="issue in data" class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">	   		
-								<div class="card">
-								  <div class="card-block">
-								    <h5 class="card-title" style="cursor: pointer"><a ui-sref="stock_left({sku:Stock.SKU, name:Stock.Name})">{{issue.title}}</a></h5>
-								  </div>
-								   <ul class="list-group-flush">
-		   						 <strong class="label-info badge1">Issue: {{issue.number}}</strong>
-		   						 <span class="label-info badge2">Labels: {{issue.labels.name }}</span>
-										<span class="label-default badge2">{{Stock.SKU}}</span>		
-										<span class="badge2  label-default ">Stock: {{Stock.Available_Stock}}</span>
-										<span class="badge1  label-default ">Original Price: {{Stock.original}}</span>
-										<span ng-if = "Stock.special" class="badge2  label-default">Discounted:{{Stock.special}}</span>						
-								  </ul>
-								</div>
-							</div>
-					   	</ul> 
-				</div>
-
-    <!--    <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> defaulted to <code>true</code>:</h6>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></uib-pagination>
-    <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> set to <code>false</code>:</h6>
-    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination> -->
-    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
-
-</div>
-<!-- 			<div ng-init="initialize()">
-			
-				
-				
-		
+			<ul class = "issue-container" ng-repeat="issue in data">
+				<li ng-class-even="'even'" ng-class-odd="'odd'"> 
+					<a class="issue-title">#{{issue.number}} 
+					</a>
+					<div>
+							<span class="issue-title">{{issue.title}} </span>
+					</div>
+					<div class = "commentBox"> 
+					<div class="avatar-box">
+						<a ng-href="https:github.com/{{issue.user.login}}">
+							<img class = "user_image" src="https://avatars.githubusercontent.com/u/{{issue.user.id}}?v=3&s=48"> 
+						</a>
+					</div>
+					
+						<div class="comment" ui-sref="login({num: issue.number})" ng-bind-html="issue.body">
+						</div>
+							<div class = "user_login">
+							<a ng-href="https:github.com/{{issue.user.login}}">@{{issue.user.login}}</a>
+						</div>
+					</div>
+				</li>
 
 
-
-				<nav>
-				  <ul class="pagination">
-				  		    <li class="page-item"><a class="page-link" ng-click="initialize(1)" href="#">First</a></li><span class="sr-only">Last</span>
-				    <li class="page-item ">
-				      <a class="page-link" ng-click = "paginate(current, 'previous')" href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				        <span class="sr-only">Previous</span>
-				      </a>
-				    </li>
-				    <li class="page-item ">
-				      <a class="page-link" href="#" ng-click="initialize(current)">{{current}} <span class="sr-only">(current)</span></a>
-				    </li>
-				    <li class="page-item"><a class="page-link" ng-click="initialize(current + 1)" href="#">{{current + 1}}</a></li>
-				    <li class="page-item"><a class="page-link" ng-click="initialize(current + 2)" href="#">{{current + 2}}</a></li>
-				    <li class="page-item"><a class="page-link" ng-click="initialize(current + 3)" href="#">{{current + 3}}</a></li>
-				    <li class="page-item"><a class="page-link" ng-click="initialize(current + 4)" href="#">{{current + 4}}</a></li>
-				    <li class="page-item">
-				      <a class="page-link" ng-click = "paginate(current, 'next')"  ng-hide="current === number_of_issues-3" href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				        <span class="sr-only">Next</span>
-				      </a>
-				    </li>
-				    <li class="page-item"><a class="page-link" ng-click="initialize(number_of_issues)" href="#">Last</a></li><span class="sr-only">Last</span>
-				  </ul>
-				</nav>
-			</div> -->
+			</ul>
 		</div>
+		<div class="pagination">
+		  <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></uib-pagination>
+   		</div>
+	</div>
 </section>
+

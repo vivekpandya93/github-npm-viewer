@@ -2,16 +2,16 @@
     <div class="container">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
+
         </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+<!--         <button  ui-sref="login" class="btn login-button">Login</button>
+ -->     <email style="display:inline-block; vertical-align:top; float: right;"></email>
+
         <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
+            <img style="width:36px; height:36px" src="https://avatars.githubusercontent.com/u/{{user.github.id}}?v=3&s=48"> 
+            <span>Welcome, {{ user.github.login }}!</span>
             <a ng-click="logout()">Logout</a>
         </div>
+
     </div>
 </nav>

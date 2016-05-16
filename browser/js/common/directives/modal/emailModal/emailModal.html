@@ -1,0 +1,35 @@
+<div>
+    <script type="text/ng-template" id="myEmailModalContent.html">
+    <div class="modal-dialog">
+        <div class="modal-header" style="text-align: center;">
+            <h3 class="modal-title" >Login Using Github</h3>
+        </div>
+        <div class="modal-body" style="position-top: 150px">
+        
+               <button class="btn btn-warning btn-lg btn-block" ng-show="!user">
+            <a href="/auth/github" target="_self">
+                <span class="hide-sm" href="/auth/github" >
+                      <i class="fa fa-github fa-1x" aria-hidden="true"> LOGIN</i>
+                      &nbsp;&nbsp;
+                </span>
+                <span class="sr-only"></span>
+            </a>
+         </button>
+        <button class="btn btn-primary btn-lg btn-block"  type="button" ng-show="!user" ng-click="cancel()">
+                <span class="hide-sm" >
+                      <i class="fa fa-github fa-1x"  aria-hidden="true">CONTINUE WITHOUT LOGIN</i>
+                      &nbsp;&nbsp;
+                </span>
+                <span class="sr-only"></span>
+         </button>
+        </div>
+        
+        <div class="modal-footer">
+          
+        </div>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-sm btn-primary" ng-show="!user" ng-click="open()">Login</button>
+</div>
+

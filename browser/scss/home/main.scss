@@ -1,12 +1,93 @@
 #home {
+ 	background-color: #C8A2C8;
+
+ ul {
+ 	list-style: none;
+ }
+ .commentBox {
+	  display: flex;
+	  flex-wrap: nowrap;
+	  color: #555;
+	  cursor: pointer;
+	  padding: 5px;
+	  margin-bottom: 20px;
+ }
+ .user_login {
+ 	position: relative; 
+ 	top: 50px;
+ 	right: 60px;
+
+ }
+ .issue-container {
+ 	margin-right: 20px;
+ }
+ .issue-title {
+ 	font-size: 13px;
+ 	padding-top: 3px;
+ 	font-weight:bold;
+ 	color: black;
+ }
+ .comment {
+ 	position: absolute;
+ 	width: 800px;
+ }
+ .avatar-box {
+ 	margin-right:12px;
+ }
+
+ .user_image {
+  		width:48px; 
+ 		height:48px;
+ 
+  }
   fullstack-logo {
     padding-top: 30px;
     width: 150px;
     margin: 0 auto;
   }
+  .container {
+
+  	padding-top: 65px;
+
+  }
   h1 {
     margin-top: 40px;
     text-align: center;
   }
+
+.even {
+    font-size:14px;
+    padding-left:10px;
+    padding-right:10px;
+    border-bottom:1px solid;
+    border-color:#333;
+    margin-bottom: 6px;
+    background-color: #FFFFFF;
+
+     &:hover {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+  }
+}
+.odd {
+
+    font-size:14px;
+    padding-left:10px;
+    padding-right:10px;
+    border-bottom:1px solid;
+    border-color:#333;
+        margin-bottom: 6px;
+
+    background-color: #e6e6e6;
+      &:hover {
+    background-color: #d4d4d4;
+    border-radius: 5px;
+  }
+}
+.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center
+}
 }
 

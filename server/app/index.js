@@ -38,4 +38,12 @@ app.use(function (err, req, res, next) {
     console.error(err)
     console.error(err.stack);
     res.status(err.status || 500).send(err.message || 'Internal server error.');
+    var _send = res.send;
+    var sent = false;
+    res.send = function(data){
+        if(sent) return;
+        _send.bind(res)(data);
+        sent = true;
+    };
+    next();
 });

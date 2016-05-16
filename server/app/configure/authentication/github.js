@@ -15,16 +15,32 @@ module.exports = function (app) {
         callbackURL: githubConfig.callbackURL
     };
 
+var updateUserCredentials = function (user, profile) {
+            console.log("profile", profile)
+
+        user.github.login = profile.username;
+        user.github.avatar_url = profile._json.avatar_url;
+                console.log("user", user)
+
+            return user.save()
+
+    };
+
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
+
         UserModel.findOne({ 'github.id': profile.id }).exec()
             .then(function (user) {
-
                 if (user) {
+                   return updateUserCredentials(user, profile)
+                                        console.log("user", user)
+
                     return user;
                 } else {
                     return UserModel.create({
                         github: {
-                            id: profile.id
+                            id: profile.id,
+                            login: profile.login,
+                            avatar_url: profile.avatar_url
                         }
                     });
                 }
@@ -45,7 +61,8 @@ module.exports = function (app) {
     app.get('/auth/github/callback',
         passport.authenticate('github', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/play/story');
+            console.log('here')
+            res.redirect('/home');
         });
 
 };
