@@ -8,6 +8,7 @@ app.config(function ($stateProvider) {
                 var num = $stateParams.num;
                 var issueNum = {
                     issueNum: num
+
                 }
                 return IssueFactory.getOneIssue(issueNum)
             }, 
@@ -23,7 +24,9 @@ app.config(function ($stateProvider) {
     })
 })
 
-app.controller('LoginCtrl', function ($scope, $state, one_issue, $sce, $showdown, comments) {
+app.controller('LoginCtrl', function ($scope, $state, one_issue, $sce, $showdown, comments, loader) {
+    loader.hide();
+
     var markIt = function(comments) {
             comments.forEach(function(comment){
                 comment.body = $showdown.makeHtml(comment.body)

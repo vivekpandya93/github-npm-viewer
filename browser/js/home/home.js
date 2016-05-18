@@ -24,7 +24,7 @@ var truncate = function(issues) {
         }
     })
 }
-app.controller('homeController', function($scope, $http, IssueFactory) {
+app.controller('homeController', function($scope, $http, IssueFactory, loader) {
     $scope.current = 1;
     $scope.bigTotalItems = 0;
     var QueryDetails = {
@@ -33,10 +33,9 @@ app.controller('homeController', function($scope, $http, IssueFactory) {
         }
 
 var lastPage = (function() {
-    $http.get('https://api.github.com/repos/npm/npm').success(function(data) {
-        $scope.bigTotalItems = data.open_issues_count
-        $scope.numPages = Math.ceil($scope.bigTotalItems / 30);
-        console.log("bigTotalItems", $scope.bigTotalItems)
+    IssueFactory.getNumberOfIssues().then(function(data){
+        $scope.numPages = data.numPages;
+        $scope.bigTotalItems = data.TotalIssues;
     })
 })()
     $scope.goToEvent = function(event) {
@@ -49,8 +48,12 @@ var lastPage = (function() {
     })
     $scope.initialize = function(pageNumber) {
         QueryDetails.PageNum = pageNumber;
+        loader.show();
         IssueFactory.getAllIssues(QueryDetails).then(function(data) {
+
             $scope.data = data;
+            loader.hide();
+
             truncate($scope.data);
         });
     }

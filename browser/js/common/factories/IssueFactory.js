@@ -12,6 +12,9 @@ app.factory('IssueFactory', function ($http) {
         },
         getOneComment: function(num) {
             return $http.get(path+'getComments', {params: num}).then(extractData);
+        },
+        getNumberOfIssues: function() {
+        	return $http.get(path+'getNumber').then(extractData);
         }
     }
 });
