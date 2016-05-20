@@ -16,14 +16,9 @@ module.exports = function (app) {
     };
 
 var updateUserCredentials = function (user, profile) {
-            console.log("profile", profile)
-
         user.github.login = profile.username;
         user.github.avatar_url = profile._json.avatar_url;
-                console.log("user", user)
-
-            return user.save()
-
+        return user.save()
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
@@ -32,8 +27,6 @@ var updateUserCredentials = function (user, profile) {
             .then(function (user) {
                 if (user) {
                    return updateUserCredentials(user, profile)
-                                        console.log("user", user)
-
                     return user;
                 } else {
                     return UserModel.create({
@@ -61,7 +54,6 @@ var updateUserCredentials = function (user, profile) {
     app.get('/auth/github/callback',
         passport.authenticate('github', { failureRedirect: '/login' }),
         function (req, res) {
-            console.log('here')
             res.redirect('/home');
         });
 

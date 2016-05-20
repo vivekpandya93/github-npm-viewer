@@ -1,11 +1,11 @@
 (function () {
-
+    //inspired by: https://medium.com/opinionated-angularjs/techniques-for-authentication-in-angularjs-applications-7bbf0346acec#.k18o2ipxf
     'use strict';
 
     // Hope you didn't forget Angular! Duh-doy.
     if (!window.angular) throw new Error('I can\'t find Angular!');
 
-    var app = angular.module('fsaPreBuilt', []);
+    var app = angular.module('FrontEndAuth', []);
 
 
     // AUTH_EVENTS is used throughout our app to
@@ -48,7 +48,6 @@
 
         function onSuccessfulLogin(response) {
             var data = response.data;
-            console.log("response,", response)
             Session.create(data.id, data.user);
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             return data.user;

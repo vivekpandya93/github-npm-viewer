@@ -1,6 +1,6 @@
 'use strict';
 
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate','ngSanitize','ng-showdown']);
+window.app = angular.module('FullstackGeneratedApp', ['FrontEndAuth', 'ui.router', 'ui.bootstrap', 'ngAnimate','ngSanitize','ng-showdown']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
@@ -43,11 +43,11 @@ app.run(function ($rootScope, AuthService, $state, loader) {
         AuthService.getLoggedInUser().then(function (user) {
             // If a user is retrieved, then renavigate to the destination
             // (the second time, AuthService.isAuthenticated() will work)
-            // otherwise, if no user is logged in, go to "login" state.
+            // otherwise, if no user is logged in, go to "home" state.
             if (user) {
                 $state.go(toState.name, toParams);
             } else {
-                $state.go('login');
+                $state.go('home');
             }
         });
 

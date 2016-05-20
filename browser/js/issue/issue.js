@@ -1,8 +1,8 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('login', {
-        url: '/login/:num',
-        templateUrl: 'js/login/login.html',
-        controller: 'LoginCtrl',
+    $stateProvider.state('issue', {
+        url: '/issue/:num',
+        templateUrl: 'js/issue/issue.html',
+        controller: 'IssueCtrl',
         resolve: {
             one_issue: function($stateParams, IssueFactory) {
                 var num = $stateParams.num;
@@ -24,7 +24,7 @@ app.config(function ($stateProvider) {
     })
 })
 
-app.controller('LoginCtrl', function ($scope, $state, one_issue, $sce, $showdown, comments, loader) {
+app.controller('IssueCtrl', function ($scope, $state, one_issue, $sce, $showdown, comments, loader) {
     loader.hide();
 
     var markIt = function(comments) {

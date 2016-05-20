@@ -39,7 +39,6 @@ var lastPage = (function() {
 })()
     $scope.goToEvent = function(event) {
         var issueNum = event.target.innerText;
-        console.log("issueNum", issueNum)
     }
 
     $scope.$watch('bigCurrentPage', function(newVal) {

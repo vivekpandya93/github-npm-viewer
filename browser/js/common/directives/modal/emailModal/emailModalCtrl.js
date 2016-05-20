@@ -3,7 +3,6 @@ app.controller('emailModalCtrl',  function ($scope, $uibModal, $log, $window) {
   $scope.animationsEnabled = true;
   $scope.open = function (size) {
     $scope.query = $window.location.href
-    console.log("$scope", $scope.query)
     $scope.email = {}
     $scope.email.message = $scope.query
     var modalInstance = $uibModal.open({
@@ -37,7 +36,6 @@ app.controller('emailModalInstanceCtrl', function ($scope, $uibModalInstance, em
   };
   $scope.isSelected = false; 
   $scope.ok = function () {
-    console.log("email:", $scope.selected.emailInfo)
     $uibModalInstance.close($scope.selected.emailInfo);
   };
   $scope.cancel = function () {

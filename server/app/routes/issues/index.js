@@ -12,7 +12,7 @@ var oauth ='client_id='+gitCliendID+'&'+'client_secret='+clientSecret;
 
 router.get('/getNumber', function(req, res){
 
-    var bigTotalItems;
+    var open_issues_count;
     var totalPages;
     var responseObject = {};
     var options = {
@@ -23,14 +23,12 @@ router.get('/getNumber', function(req, res){
    }
   function callback(error, response, body) {
       var data = JSON.parse(body);
-      console.log("data", data)
-      bigTotalItems = data.open_issues_count
-      totalPages = Math.ceil(bigTotalItems/30);
+      open_issues_count = data.open_issues_count
+      totalPages = Math.ceil(open_issues_count/30);
       responseObject = {
         numPages: totalPages,
-        TotalIssues: bigTotalItems
+        TotalIssues: open_issues_count
       }
-      console.log("numPages", responseObject)
       res.send(responseObject);
   }
   request(options, callback);
@@ -53,8 +51,6 @@ router.get('/allIssues', function (req, res){
 
 
 router.get('/singleIssue', function (req, res){ 
-  console.log("here")
-  console.log("req.query in singleIssue", req.query)
   var options = {
    url: 'https://api.github.com/repos/npm/npm/issues/'+req.query.issueNum+'?'+oauth,
    headers: {
@@ -64,7 +60,6 @@ router.get('/singleIssue', function (req, res){
 
   function callback(error, response, body) {
       var data = JSON.parse(body);
-      console.log("data", data)
       res.send(data);
   }
   request(options, callback);
@@ -73,7 +68,6 @@ router.get('/singleIssue', function (req, res){
 
 
 router.get('/getComments', function (req, res){ 
-
   var options = {
    url: 'https://api.github.com/repos/npm/npm/issues/'+req.query.issueNum+'/comments'+'?'+oauth,
    headers: {
