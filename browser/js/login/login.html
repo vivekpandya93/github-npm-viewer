@@ -1,5 +1,4 @@
 <section id="page">
-
     <div class="comment">
             <div class="comment-container">
                 <div class="main-box">   
@@ -19,38 +18,36 @@
                         </div>
                     <div class ="badges">
 
-                    <div>
-                        <h5><span class="label label-success">{{state}}</span></h5>
-                    </div>
-                      <div ng-if="labels" ng-repeat = "label in labels" >
-                        <h5><span ng-style="{'background-color': '#'+label.color}" class="label label-warning">{{label.name}}</span></h5>
-                    </div>
-                </div>
-                   
-                </div>
-
-            </div>
-    <div class="alert alert-success" ng-if="comments" role="alert"> <h1>COMMENTS</h1></div>
-      <div class="individual-comments-container">
-        <div class="box">
-            <div ng-repeat="comment in comments">
-                <div class="main-box">   
-                    <div class = "commentBox" > 
-                        <div class="avatar-box" >
-                            <a ng-href="https:github.com/{{comment.user.login}}">
-                                 <img class = "user_image" src="https://avatars.githubusercontent.com/u/{{comment.user.id}}?v=3&s=48">
-                            </a>
-                             <div class = "user_login">
-                                <a ng-href="https:github.com/{{comment.user.login}}">@{{comment.user.login}}</a>
-                             </div>
+                        <div>
+                            <h5><span class="label label-success">{{state}}</span></h5>
                         </div>
-                        <div class="individual-comments">
-                            <p ng-bind-html="comment.body"></p>
+                        <div ng-if="labels" ng-repeat = "label in labels" >
+                            <h5><span ng-style="{'background-color': '#'+label.color}" class="label label-warning">{{label.name}}</span></h5>
                         </div>
-                    </div>
+                     </div>
                 </div>
             </div>
-          </div>
+      <div class="alert alert-success" ng-if="comments" role="alert"> <h1>COMMENTS</h1></div>
+         <div class="individual-comments-container">
+             <div class="box">
+                <div ng-repeat="comment in comments">
+                    <div class="main-box">   
+                        <div class = "commentBox" > 
+                            <div class="avatar-box" >
+                                <a ng-href="https:github.com/{{comment.user.login}}">
+                                     <img class = "user_image" src="https://avatars.githubusercontent.com/u/{{comment.user.id}}?v=3&s=48">
+                                </a>
+                                <div class = "user_login">
+                                     <a ng-href="https:github.com/{{comment.user.login}}">@{{comment.user.login}}</a>
+                                </div>
+                            </div>
+                            <div class="individual-comments">
+                                <p ng-bind-html="comment.body"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>    
     </div>
 </section>

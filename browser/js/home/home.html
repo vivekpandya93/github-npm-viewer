@@ -1,35 +1,28 @@
 <section id="home">
 		<div class = "container">
 			 <div ng-init = "initialize(bigCurrentPage)"></div>
-
 			<ul class = "issue-container" ng-repeat="issue in data">
 				<li ng-class-even="'even'" ng-class-odd="'odd'"> 
-					<a class="issue-title">#{{issue.number}} 
-					</a>
+					<a class="issue-title">#{{issue.number}}</a>
 					<div>
-				<span class="issue-title">{{issue.title}} </span>
+						<span class="issue-title">{{issue.title}} </span>
 					</div>
 					<div class = "commentBox"> 
-					<div class="avatar-box">
-						<a ng-href="https:github.com/{{issue.user.login}}">
-							<img class = "user_image" src="https://avatars.githubusercontent.com/u/{{issue.user.id}}?v=3&s=48"> 
-						</a>
-					</div>
-					
-						<div class="comment" ui-sref="login({num: issue.number})" ng-bind-html="issue.body">
+						<div class="avatar-box">
+							<a ng-href="https:github.com/{{issue.user.login}}">
+								<img class = "user_image" src="https://avatars.githubusercontent.com/u/{{issue.user.id}}?v=3&s=48"> 
+							</a>
 						</div>
-							<div class = "user_login">
+						<div class="comment" ui-sref="login({num: issue.number})" ng-bind-html="issue.body"></div>
+						<div class = "user_login">
 							<a ng-href="https:github.com/{{issue.user.login}}">@{{issue.user.login}}</a>
 						</div>
 					</div>
 				</li>
-
-
 			</ul>
 		</div>
 		<div class="pagination">
 		  <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></uib-pagination>
    		</div>
-	</div>
 </section>
 
