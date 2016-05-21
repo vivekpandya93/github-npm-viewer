@@ -24,9 +24,17 @@ If  `gulp` installed on your machine,  `npm install -g gulp`.
 Finally, the generated project assumes a running MongoDB database on port `27017` (the default MongoDB port).
 
 ## To run: 
-`mongod` -> if there are problems with this - run `sudo rm /tmp/mongodb-27017.sock`
-`npm start`
-`gulp`
+```bash
+mongod - if there are problems with this - run `sudo rm /tmp/mongodb-27017.sock`
+```
+
+```bash
+npm start
+```
+
+```bash
+gulp
+```
 
 The technologies used are: 
 
