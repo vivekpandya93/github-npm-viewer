@@ -37,6 +37,8 @@ npm start
 gulp
 ```
 
+*** I ran into problems with loading up mongod - if the file '/tmp/mongodb-27017.sock' exists - try to delete it, ie. 'sudo rm /tmp/mongodb-27017.sock' - this solution worked for me. 
+
 The technologies used are: 
 
 #Server: 
